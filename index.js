@@ -1,6 +1,11 @@
 const express = require('express')
-const app = express()
+const bodyParser = require('body-parser')
+const usersRouter = require('./users/routes')
 
-//use this later in model.js
-// const Sequelize = require('sequelize')
-// const sequelize = new Sequelize('postgres://postgres:secret@localhost:5432/postgres', {define: { timestamps: false }})
+const app = express()
+const port = process.env.PORT || 4000
+
+app
+  .use(bodyParser.json())
+  .use(usersRouter)
+  .listen(port, () => console.log(`Listening on port ${port}`))
