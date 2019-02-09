@@ -9,7 +9,7 @@ router.post('/tokens', (req, res) => {
   const password = req.body.password
   
   if (!email || !password) {
-    res.status(404).send({
+    res.status(400).send({
       message: 'Please try again'
     })
   } else {
@@ -21,7 +21,7 @@ router.post('/tokens', (req, res) => {
       })
       .then(someUser => {
         if (!someUser) {
-          return res.status(404).send({
+          return res.status(400).send({
             message: 'Please try again'
           })
         } else if (bcrypt.compareSync(req.body.password, someUser.password)) {
@@ -29,7 +29,7 @@ router.post('/tokens', (req, res) => {
             token: toJWT({ userId: someUser.id })
           })
         } else {
-          res.status(404).send({
+          res.status(400).send({
             message: 'Please try again'
           })
         }
