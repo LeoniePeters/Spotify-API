@@ -38,6 +38,22 @@ router.get('/playlists/:id', (req, res, next) => {
         return res.send(playlist)
       })
       .catch(error => next(error))
-  })  
+})  
 
+router.delete('/playlists/:id', (req, res, next) => {
+    Playlist
+      .findById(req.params.id)
+      .then(playlist => {
+        if (!playlist) {
+          return res.status(404).send({
+            message: `Playlist does not exist`
+          })
+        }
+        return playlist.destroy().then(() => res.send({
+          message: `Playlist was deleted`
+        }))
+      })
+      .catch(error => next(error))
+  })
+  
 module.exports = router
