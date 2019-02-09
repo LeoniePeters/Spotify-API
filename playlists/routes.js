@@ -24,6 +24,20 @@ router.get('/playlists', (req, res, next) => {
         res.send({ playlists })
       })
       .catch(error => next(error))
-  })
+})
+
+router.get('/playlists/:id', (req, res, next) => {
+    Playlist
+      .findById(req.params.id)
+      .then(playlist => {
+        if (!playlist) {
+          return res.status(404).send({
+            message: `Playlist does not exist`
+          })
+        }
+        return res.send(playlist)
+      })
+      .catch(error => next(error))
+  })  
 
 module.exports = router
