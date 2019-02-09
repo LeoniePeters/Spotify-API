@@ -1,9 +1,10 @@
 const { Router } = require('express')
 const Song = require('./model')
+const auth = require('../authentication/middleware')
 
 const router = new Router()
 
-router.post('/playlists/:id/songs', (req, res, next) => {
+router.post('/playlists/:id/songs', auth, (req, res, next) => {
   Song
     .create(req.body)
     .then(song => {

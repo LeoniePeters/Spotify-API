@@ -18,13 +18,13 @@ function auth(req, res, next) {
     }
     catch(error) {
       res.status(400).send({
-        message: `Error ${error.name}: ${error.message}`,
+        message: `Error ${error.name}: ${error.message}`
       })
     }
   }
   else {
-    res.status(401).send({
-      message: 'Please supply some valid credentials'
+    res.status(404).send({
+      message: `Error 404`
     })
   }
 }
