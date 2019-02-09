@@ -3,7 +3,6 @@ const {toJWT} = require('./jwt')
 const User = require('../users/model')
 const router = new Router()
 const bcrypt = require('bcrypt')
-const auth = require('./middleware')
 
 router.post('/tokens', (req, res) => {
   const email = req.body.email
@@ -43,11 +42,5 @@ router.post('/tokens', (req, res) => {
       })
   }
 })
-
-router.get('/secret-endpoint', auth, (req, res) => {
-    res.send({
-      message: `Thanks for visiting the secret endpoint ${req.user.email}.`,
-    })
-  })
 
 module.exports = router
