@@ -1,5 +1,8 @@
 # :musical_note: Spotify-API simulation :musical_note:
 
+## [Check out the deployed version](https://thawing-reaches-22834.herokuapp.com)
+
+
 ## What it is about:
 This project is a simulation of a playlists API. The API makes it possible for users to make an account, to post and get playlists and songs and to delete songs.
 
